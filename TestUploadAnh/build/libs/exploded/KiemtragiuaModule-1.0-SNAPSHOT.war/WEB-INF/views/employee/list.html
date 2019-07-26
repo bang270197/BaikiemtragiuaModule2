@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Employee List</h2>
+<a th:href="@{/index-department}">List Department</a>
+<a th:href="@{/show-createEmployee}">Create new Employee</a>
+<form th:action="@{/search-department}" method="get">
+    <div>
+        <label>Search department</label> <input type="text" name="name">
+        </br>
+        <input type="submit" value="Search">
+    </div>
+</form>
+<div>
+    <a th:href="@{'/index'(page=${employeess.number -1})}" th:if="${employeess.hasPrevious()}">Previous</a>
+    <span th:text="${employeess.number + 1}"></span>/<span th:text="${employeess.totalPages}"></span>
+    <a th:href="@{'/index'(page=${employeess.number+1})}" th:if="${employeess.hasNext()}">Next</a>
+</div>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Anh</td>
+        <td>bithDate</td>
+        <td>Address</td>
+        <td>Salary</td>
+        <td>Department</td>
+        <td>Anh</td>
+        <td>view</td>
+        <td>edit</td>
+        <td>delete</td>
+    </tr>
+    <tr th:each="employees, iterStat:${employeess}" th:class="${iterStat.odd}?'odd'" enctype="multipart/form-data" >
+        <td th:text="${employees.name}"></td>
+        <td><img width="70px" height="50px" th:src="@{'/images/' + ${employees.getAvatar()}}"></td>
+        <td th:text="${#dates.format(employees.birthDate,'dd-MM-yyyy')}"></td>
+        <td th:text="${employees.address}"></td>
+        <td th:text="${employees.salary}"></td>
+        <td th:text="${employees.department.name}"></td>
+        <td><a th:href="@{/show-view/__${employees.getId()}__}">view</a></td>
+        <td><a th:href="@{/show-edit/__${employees.getId()}__}">edit</a></td>
+        <td><a th:href="@{/show-delete/__${employees.getId()}__}">delete</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

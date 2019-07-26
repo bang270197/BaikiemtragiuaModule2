@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/index}">BACK LIST</a>
+<div style="float: left">
+    <h1><label>Department</label></h1>
+    <p th:text="${departmentSearch.name}"></p>
+    <h3>Employee</h3>
+    <div th:each="e:${employeeSearch}">
+        <p th:text="${e.name}"></p>
+        <p th:text="${e.birthDate}"></p>
+        <p th:text="${e.address}"></p>
+        <img width="150px" height="140px" th:src="@{'/images/'+ ${e.getAvatar()}}">
+        <p th:text="${e.salary}"></p>
+    </div>
+</div>
+</body>
+</html>

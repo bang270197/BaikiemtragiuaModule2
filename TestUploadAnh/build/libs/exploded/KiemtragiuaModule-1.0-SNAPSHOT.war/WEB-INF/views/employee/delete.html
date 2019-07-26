@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/index}">Back list</a>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: crimson"></p>
+</th:block>
+<form th:action="@{/delete-employee}" th:object="${employeeForm}" method="post" enctype="multipart/form-data">
+<input type="hidden" th:field="*{id}">
+    <table>
+    <tr>
+        <td>Name</td>
+        <td th:text="${employeeForm.name}"></td>
+    </tr>
+
+        <tr>
+            <td>Address</td>
+            <td th:text="${employeeForm.address}"></td>
+        </tr>
+
+        <tr>
+            <td>brithDate</td>
+            <td th:text="${employeeForm.birthDate}"></td>
+        </tr>
+
+        <tr>
+            <td>Image</td>
+            <td ><img width="150px" height="130px" th:src="@{'/images/'+${employee.getAvatar()}}"></td>
+        </tr>
+
+        <tr>
+            <td>Salary</td>
+            <td th:text="${employeeForm.salary}"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="delete"></td>
+        </tr>
+
+</table>
+</form>
+</body>
+</html>

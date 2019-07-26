@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>Name</td>
+        <td><p th:text="${employeeForm.name}"></p></td>
+    </tr>
+    <tr>
+        <td>birth</td>
+        <td><p th:text="${employeeForm.birthDate}"></p></td>
+    </tr>
+    <tr>
+        <td>Image</td>
+        <td><p><img width="150px" height="140px" th:src="@{'/images/'+${emoloyee.getAvatar()}}"></p></td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td> <p th:text="${employeeForm.address}"></p></td>
+    </tr>
+    <tr>
+        <td>Salary</td>
+        <td> <p th:text="${employeeForm.salary}"></p></td>
+    </tr>
+
+</table>
+</body>
+</html>
